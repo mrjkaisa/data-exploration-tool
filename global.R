@@ -3,6 +3,7 @@
 # Load libraries
 library(shiny)
 library(shinyBS)
+library(shinythemes)
 library(shinyjs)
 library(shinyWidgets)
 
