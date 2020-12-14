@@ -4,7 +4,7 @@ library(shiny)
 ui <- fluidPage(
     
     shinyjs::useShinyjs(),
-     
+    theme = shinytheme("cerulean"),
     #Load global theme (find the corresponding CSS sheet in the .www subdirectory)
     
     #App title 
