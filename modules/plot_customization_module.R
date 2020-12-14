@@ -26,4 +26,27 @@ plot_customization_UI <- function(id,
     
     tooltip = tooltipOptions(title = "Customize the plot")
   )
+  
+  #add output ID to namespace, if output is generated in UI module
+  #plotOutput(ns("bivariate"))
 } 
+
+
+
+plot_customization_server <- function(id) { 
+
+       moduleServer(
+        id,
+          function(input, output, session) {
+              
+            trend_type <- reactive({
+              input$custom_button %>% as.character
+            })
+            
+            return(trend_type)
+          }
+       )
+}
+                                    
+                                      
+          

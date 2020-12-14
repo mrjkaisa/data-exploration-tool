@@ -9,3 +9,4 @@ make_gg_server<- function(data) {
           legend.background = element_blank()) 
   return(plott)
 }
+

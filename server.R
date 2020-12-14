@@ -28,15 +28,9 @@ server <- function(input, output, session) {
         paste("# selected variable =", length(vars_selected()))
     })
     
-    # scatter_trendline <- reactive({
-    #     req(input$scatter_custom)
-    #     input$scatter_custom 
-    # })
-    # 
-    # output$plottest <- renderText({
-    #     paste(scatter_trendline)
-    # })
-        
+    trend_type <- plot_customization_server("scatter_custom")
+    
+    
     #### 2.1 Univariate plots ####
     
     #visualize distributions as density
@@ -87,10 +81,27 @@ server <- function(input, output, session) {
             }
     
             else {
-                df() %>% 
-                    select(vars_selected()) %>%
-                    make_gg_server(.) + 
-                    geom_point(aes_string(x = vars_selected()[1], y = vars_selected()[2]))
+                if ("Linear" %in% trend_type()) {
+                         df() %>% 
+                        select(vars_selected()) %>%
+                        make_gg_server(.) + 
+                        geom_point(aes_string(x = vars_selected()[1], y = vars_selected()[2])) +
+                        geom_smooth(method = "lm", se = FALSE, na.rm = TRUE)
+                    }
+                # if ("Quadratic" %in% trend_type()) {
+                #         df() %>% 
+                #         select(vars_selected()) %>%
+                #         make_gg_server(.) + 
+                #         geom_point(aes_string(x = vars_selected()[1], y = vars_selected()[2])) +
+                #         geom_smooth(method = "lm", function = y ~ poly(x,2), se = FALSE, na.rm = TRUE)
+                #     }
+                if ("Loess" %in% trend_type()) {
+                         df() %>% 
+                        select(vars_selected()) %>%
+                        make_gg_server(.) + 
+                        geom_point(aes_string(x = vars_selected()[1], y = vars_selected()[2])) +
+                        geom_smooth(method = "loess", se = FALSE, na.rm = TRUE)
+                }
             }
         }
     }, bg = "transparent")
