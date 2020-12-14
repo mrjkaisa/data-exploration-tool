@@ -21,15 +21,22 @@ server <- function(input, output, session) {
     
     vars_selected <- reactive({
         req(input$file1)
-        input$variables_list %>% as.character() 
+        input$variables_list %>% as.character
     })
     
     output$vartest <- renderText({
         paste("# selected variable =", length(vars_selected()))
     })
     
-    
-    
+    # scatter_trendline <- reactive({
+    #     req(input$scatter_custom)
+    #     input$scatter_custom 
+    # })
+    # 
+    # output$plottest <- renderText({
+    #     paste(scatter_trendline)
+    # })
+        
     #### 2.1 Univariate plots ####
     
     #visualize distributions as density

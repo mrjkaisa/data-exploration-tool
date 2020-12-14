@@ -33,7 +33,8 @@ ui <- fluidPage(
                          choices = NULL),
         
             
-            textOutput(outputId = "vartest")
+            textOutput(outputId = "vartest"),
+            textOutput(outputId = "plottest")
         ),
         
         mainPanel(width=9,
