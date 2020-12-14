@@ -69,15 +69,13 @@ ui <- fluidPage(
                                                          selected = NULL, inline = TRUE),
                                      
                                      br(),
-                                     # dropdownButton(
-                                     #     tags$h3("List of Input"),
-                                     #     selectInput(inputId = 'xcol', label = 'X Variable', choices = names(iris)),
-                                     #     selectInput(inputId = 'ycol', label = 'Y Variable', choices = names(iris), selected = names(iris)[[2]]),
-                                     #     sliderInput(inputId = 'clusters', label = 'Cluster count', value = 3, min = 1, max = 9),
-                                     #     circle = TRUE, status = "danger", icon = icon("gear"), width = "300px",
-                                     #     tooltip = tooltipOptions(title = "Click to see inputs !")
-                                     # ),
+                                     
                                      plotOutput(outputId = "heatmap"),
+                                     
+                                     plot_customization_UI("scatter_custom", 
+                                                           action_label_1 = "Trendline",
+                                                           choice_list_1 = c("Linear", "Quadratic", 
+                                                                             "Loess")),
                                      plotOutput(outputId = "bivariate")
                                 
                               ),
